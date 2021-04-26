@@ -32,6 +32,12 @@ init({
 4. start at `npm run start`
 5. done :) wait available for order notification)
 
+## TODO
+
+1. [ ] move index to `example` folder
+2. [ ] add method schedule task
+3. [ ] publish to npm
+
 ## License
 
 MIT &copy; [reslear](https://github.com/reslear)
