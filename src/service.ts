@@ -24,7 +24,7 @@ export const getFormData = (obj: TObj) => {
   return form
 }
 
-export const init = async ({ form_data, url }: IOptions) => {
+export const startTalonCheck = async ({ form_data, url }: IOptions) => {
   const form = getFormData(form_data)
 
   const { body, headers } = await got.post<string>(url, {
@@ -37,18 +37,25 @@ export const init = async ({ form_data, url }: IOptions) => {
   const regex = /type="checkbox"/g
   const regex_unavailable = /Талоны к указанному врачу отсутствуют/
 
-  if (regex.test(data) && !regex_unavailable.test(data)) {
-    const len = data.match(regex)?.length || 0
-
-    console.log(len)
-    if (!len) return
-
-    notifier.notify({
-      title: 'Появились талоны к врачу',
-      message: `количество - ${len}`,
-      sound: '',
-      wait: false,
-      open: 'https://a',
-    })
+  let result = {
+    count: 0,
   }
+
+  if (regex.test(data) && !regex_unavailable.test(data)) {
+    const count = data.match(regex)?.length || 0
+
+    if (count > 0) {
+      notifier.notify({
+        title: 'Появились талоны к врачу',
+        message: `количество - ${count}`,
+        sound: '',
+        wait: false,
+        open: 'https://a',
+      })
+    }
+
+    result.count = count
+  }
+
+  return result
 }
