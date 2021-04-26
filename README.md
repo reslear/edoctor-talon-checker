@@ -36,7 +36,8 @@ init({
 
 1. [ ] move index to `example` folder
 2. [ ] add method schedule task
-3. [ ] publish to npm
+3. [ ] random time run task
+4. [ ] publish to npm
 
 ## License
 
