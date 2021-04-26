@@ -9,21 +9,23 @@ const form_data = {
   //Check37: 'on',
 }
 
-scheduleTask(
-  '*/1 * * * *',
-  async (timestamp) => {
-    console.log(`[${chalk.magenta(timestamp)}] Task triggered`)
+const task = async (timestamp: number) => {
+  console.log(`[${chalk.magenta(timestamp)}] Task triggered`)
 
-    const { count } = await startTalonCheck({
-      url,
-      form_data,
-    })
+  const { count } = await startTalonCheck({
+    url,
+    form_data,
+  })
 
-    console.log(
-      `[${chalk.magenta(timestamp)}]: count ${chalk[count ? 'green' : 'gray'](
-        count
-      )}`
-    )
-  },
-  { timezone: 'Europe/Minsk' }
-)
+  console.log(
+    `[${chalk.magenta(timestamp)}]: count ${chalk[count ? 'green' : 'gray'](
+      count
+    )}`
+  )
+}
+
+// start cron
+scheduleTask('*/1 * * * *', task, { timezone: 'Europe/Minsk' })
+
+// start immediate
+task(+new Date())
