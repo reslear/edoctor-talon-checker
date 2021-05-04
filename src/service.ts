@@ -35,7 +35,7 @@ export const startTalonCheck = async ({ form_data, url }: IOptions) => {
   let data = iconv.decode(Buffer.from(body, 'binary'), 'win1251')
 
   const regex = /type="checkbox"/g
-  const regex_unavailable = /Талоны к указанному врачу отсутствуют/
+  const regex_unavailable = /отсутствуют/
 
   let result = {
     count: 0,
@@ -50,7 +50,7 @@ export const startTalonCheck = async ({ form_data, url }: IOptions) => {
         message: `количество - ${count}`,
         sound: '',
         wait: false,
-        open: 'https://a',
+        open: url,
       })
     }
 

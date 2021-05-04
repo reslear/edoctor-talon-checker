@@ -25,7 +25,7 @@ const task = async (timestamp: number) => {
 }
 
 // start cron
-const schedule = scheduleTask('*/11 * * * *', task, {
+const schedule = scheduleTask('*/5 * * * *', task, {
   timezone: 'Europe/Minsk',
 })
 
