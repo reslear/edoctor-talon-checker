@@ -1,0 +1,12 @@
+{
+  "name": "telegram-bot",
+  "private": true,
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "deploy": "cd ../../ && git subtree push --prefix apps/telegram-bot heroku master"
+  },
+  "dependencies": {
+    "telegraf": "^4.3.0"
+  }
+}

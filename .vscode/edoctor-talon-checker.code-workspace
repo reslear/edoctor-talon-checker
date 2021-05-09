@@ -13,6 +13,10 @@
       "path": "../apps/native"
     },
     {
+      "name": "🚀 telegram-bot",
+      "path": "../apps/telegram-bot"
+    },
+    {
       "name": "📦 edoctor-talon-checker",
       "path": "../packages/edoctor-talon-checker"
     }
