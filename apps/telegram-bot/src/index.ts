@@ -7,7 +7,6 @@ const PORT = process.env.PORT || 3000
 
 if (!process.env.BOT_TOKEN) throw new Error('"BOT_TOKEN" env var is required!')
 
-
 const bot = new Telegraf(process.env.BOT_TOKEN)
 const app = fastify()
 
@@ -87,11 +86,10 @@ bot.launch()
 
 app.listen(PORT).then(() => {
   console.log('Listening on port', PORT)
-  
 })
 
 
-const exitArr = ["exit", "SIGINT", 'uncaughtException', 'SIGTERM'];
+const exitArr = ["exit", "SIGINT", 'SIGTERM'];
 exitArr.forEach((t) => 
   process.on(t, () => {
     bot.stop()
