@@ -1,7 +1,13 @@
-import { startTalonCheck } from './service'
+import { startTalonCheck } from '../../../packages/edoctor-talon-checker/src/index'
 
-import { scheduleTask, validate, CronosExpression } from 'cronosjs'
+import { scheduleTask } from 'cronosjs'
 import chalk from 'chalk'
+
+import { NotificationCenter } from 'node-notifier'
+
+var notifier = new NotificationCenter({
+  withFallback: false,
+})
 
 const url = 'http://178.124.171.86:8081/4DACTION/TalonyWeb_TalonyList'
 const form_data = {
@@ -17,6 +23,16 @@ const task = async (timestamp: number) => {
     form_data,
   })
 
+  if (count > 0) {
+    notifier.notify({
+      title: 'Появились талоны к врачу',
+      message: `количество - ${count}`,
+      sound: '',
+      wait: false,
+      open: url,
+    })
+  }
+
   console.log(
     `[${chalk.magenta(timestamp)}]: count ${chalk[count ? 'green' : 'gray'](
       count
@@ -25,7 +41,7 @@ const task = async (timestamp: number) => {
 }
 
 // start cron
-const schedule = scheduleTask('*/5 * * * *', task, {
+scheduleTask('*/5 * * * *', task, {
   timezone: 'Europe/Minsk',
 })
 

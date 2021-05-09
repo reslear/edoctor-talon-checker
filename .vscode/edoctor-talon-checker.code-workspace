@@ -1,0 +1,21 @@
+{
+  "folders": [
+    {
+      "name": "✨ root",
+      "path": ".."
+    },
+    {
+      "name": "🚀 electron",
+      "path": "../apps/electron"
+    },
+    {
+      "name": "🚀 native",
+      "path": "../apps/native"
+    },
+    {
+      "name": "📦 edoctor-talon-checker",
+      "path": "../packages/edoctor-talon-checker"
+    }
+  ],
+  "settings": {}
+}

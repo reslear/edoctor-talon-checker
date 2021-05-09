@@ -1,12 +1,6 @@
 import got from 'got'
 import FormData from 'form-data'
 import iconv from 'iconv-lite'
-import { NotificationCenter } from 'node-notifier'
-import path from 'path'
-
-var notifier = new NotificationCenter({
-  withFallback: false,
-})
 
 export type TObj = { [K: string]: string }
 export interface IOptions {
@@ -27,7 +21,7 @@ export const getFormData = (obj: TObj) => {
 export const startTalonCheck = async ({ form_data, url }: IOptions) => {
   const form = getFormData(form_data)
 
-  const { body, headers } = await got.post<string>(url, {
+  const { body } = await got.post<string>(url, {
     body: form,
     encoding: 'binary',
   })
@@ -43,17 +37,6 @@ export const startTalonCheck = async ({ form_data, url }: IOptions) => {
 
   if (regex.test(data) && !regex_unavailable.test(data)) {
     const count = data.match(regex)?.length || 0
-
-    if (count > 0) {
-      notifier.notify({
-        title: 'Появились талоны к врачу',
-        message: `количество - ${count}`,
-        sound: '',
-        wait: false,
-        open: url,
-      })
-    }
-
     result.count = count
   }
 

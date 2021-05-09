@@ -1,0 +1,17 @@
+{
+  "name": "native",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "start": "esno src/index.ts"
+  },
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "cronosjs": "^1.7.1",
+    "edoctor-talon-checker": "file:packages/edoctor-talon-checker",
+    "node-notifier": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node-notifier": "^8.0.0"
+  }
+}
