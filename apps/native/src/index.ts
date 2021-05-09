@@ -1,4 +1,4 @@
-import { startTalonCheck } from '../../../packages/edoctor-talon-checker/src/index'
+import { checkTalon } from '../../../packages/edoctor-talon-checker/src/lib'
 
 import { scheduleTask } from 'cronosjs'
 import chalk from 'chalk'
@@ -18,7 +18,7 @@ const form_data = {
 const task = async (timestamp: number) => {
   console.log(`[${chalk.magenta(timestamp)}] Task triggered`)
 
-  const { count } = await startTalonCheck({
+  const { count } = await checkTalon({
     url,
     form_data,
   })

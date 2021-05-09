@@ -1,44 +1,15 @@
-# Belarus talon checker
-
-![](docs/main.png)
+# eDoctor talon checker
 
 Tool for check talon (a doctor's appointment card) availability,on Belarus online registry **eDoctor hospital info system**
 
-for example:
+## Packages
 
-- [lor.by](https://lor.by)
-  - original page with frame - http://lor.by/onlajn-zakaz-talona
-  - frame - http://178.124.171.86:8081/4DACTION/TalonyWeb_TalonyList
-
-## Using
-
-1. clone this repo
-2. change params
-   - go to site and open `dev tools` in `Network` tab, select doctor on site and send data, see headers
-
-![](docs/devtools.png)
-
-```ts
-init({
-  // url
-  url: 'http://178.124.171.86:8081/4DACTION/TalonyWeb_TalonyList',
-
-  // form data
-  form_data: { Check25: 'on' },
-})
-```
-
-3. install deps `npm i`
-4. start at `npm run start`
-5. done :) wait available for order notification)
-
-## TODO
-
-1. [ ] move index to `example` folder
-2. [ ] add method schedule task
-3. [ ] random time run task
-4. [ ] publish to npm
-5. [ ] add `electron` example
+| Package                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------ |
+| [edoctor-talon-checker](https://github.com/reslear/edoctor-talon-checker/tree/main/packages/edoctor-talon-checker) |
+| [native example](https://github.com/reslear/edoctor-talon-checker/tree/main/apps/native)                           |
+| electron example (🏗 WIP)                                                                                           |
+| fullstack app example (🏗 WIP)                                                                                      |
 
 ## License
 

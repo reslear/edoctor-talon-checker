@@ -8,7 +8,6 @@
   "dependencies": {
     "chalk": "^4.1.1",
     "cronosjs": "^1.7.1",
-    "edoctor-talon-checker": "file:packages/edoctor-talon-checker",
     "node-notifier": "^9.0.1"
   },
   "devDependencies": {
