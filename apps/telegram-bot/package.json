@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "ts-node-dev -r dotenv/config --clear --exit-child --respawn --transpile-only src/index.ts",
-    "start": "ts-node src/index.ts",
+    "start": "ts-node -r dotenv/config src/index.ts",
     "deploy": "cd ../../ && git subtree push --prefix apps/telegram-bot heroku master"
   },
   "dependencies": {
@@ -21,5 +21,8 @@
   },
   "devDependencies": {
     "ts-node-dev": "^1.1.6"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }

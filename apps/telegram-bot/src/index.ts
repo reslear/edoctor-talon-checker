@@ -93,5 +93,8 @@ app.listen(PORT).then(() => {
 
 const exitArr = ["exit", "SIGINT", 'uncaughtException', 'SIGTERM'];
 exitArr.forEach((t) => 
-  process.on(t, () => bot.stop())
+  process.on(t, () => {
+    bot.stop()
+    process.exit(1)
+  })
 )
