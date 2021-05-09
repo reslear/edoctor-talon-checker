@@ -15,24 +15,29 @@ npm i edoctor-talon-checker
 ```ts
 import { checkTalon } from 'edoctor-talon-checker'
 
-setInterval(async () => {
-  const { count } = await checkTalon({
-    // url
-    url: 'http://178.124.171.86:8081/4DACTION/TalonyWeb_TalonyList',
+setInterval(
+  async () => {
+    const { count } = await checkTalon({
+      // url
+      url: 'http://178.124.171.86:8081/4DACTION/TalonyWeb_TalonyList',
 
-    // form data
-    form_data: { Check25: 'on' },
-  })
+      // form data
+      form_data: { Check25: 'on' },
+    })
 
-  console.log(`talons available: ${count}`)
-}, 1000 * 5000)
+    console.log(`talons available: ${count}`)
+  },
+  // 15 min
+  1000 * 60 * 15
+)
 ```
 
 ## Example apps:
 
 - [simple native server with notifications and cron](https://github.com/reslear/edoctor-talon-checker/tree/main/apps/native)
-- electron (🏗 WIP)
-- fullstack app (🏗 WIP)
+- telegram bot (**🏗 WIP**)
+- electron
+- fullstack app
 
 ## How to get url and FormData
 
@@ -48,6 +53,7 @@ for example:
 
 ## TODO
 
+- [ ] parse talon date and doctor
 - [ ] method to auto get and parse params
 
 ## License
