@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development ts-node-dev -r dotenv/config --clear --exit-child --respawn --transpile-only src/index.ts",
     "start": "ts-node -r dotenv/config src/index.ts",
-    "deploy": "cd ../../ && git subtree push --prefix apps/telegram-bot heroku master"
+    "deploy": "cd ../../ && git subtree push --prefix apps/telegram-bot heroku main"
   },
   "dependencies": {
     "@types/node": "^15.0.2",
