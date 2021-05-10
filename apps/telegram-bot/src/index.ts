@@ -81,6 +81,8 @@ bot.command('stop', async (ctx) => {
 
 app.use(bot.webhookCallback('/secret-path'))
 
+app.use(express.static('public'))
+
 app.listen(PORT, () => {
   console.log('Listening on port', PORT)
 })
