@@ -9,6 +9,7 @@
     "deploy": "cd ../../ && git subtree push --prefix apps/telegram-bot heroku master"
   },
   "dependencies": {
+    "@types/node": "^15.0.2",
     "cronosjs": "^1.7.1",
     "cross-env": "^7.0.3",
     "dotenv": "^9.0.1",
