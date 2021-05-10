@@ -1,6 +1,6 @@
 # eDoctor talon checker
 
-![](docs/main.png)
+![](./docs/main.png)
 
 Tool for check talon (a doctor's appointment card) availability,on Belarus online registry **eDoctor hospital info system**
 

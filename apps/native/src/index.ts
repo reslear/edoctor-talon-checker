@@ -11,12 +11,12 @@ var notifier = new NotificationCenter({
 
 const url = 'http://178.124.171.86:8081/4DACTION/TalonyWeb_TalonyList'
 const form_data = {
-  Check25: 'on',
-  //Check37: 'on',
+  //Check25: 'on',
+  Check37: 'on',
 }
 
 const task = async (timestamp: number) => {
-  console.log(`[${chalk.magenta(timestamp)}] Task triggered`)
+  console.log(`[${chalk.magenta(timestamp)}] Проверка талонов...`)
 
   const { count } = await checkTalon({
     url,
@@ -34,9 +34,9 @@ const task = async (timestamp: number) => {
   }
 
   console.log(
-    `[${chalk.magenta(timestamp)}]: count ${chalk[count ? 'green' : 'gray'](
-      count
-    )}`
+    `[${chalk.magenta(timestamp)}]: Найдено количество ${chalk[
+      count ? 'green' : 'gray'
+    ](count)}`
   )
 }
 

@@ -1,4 +1,6 @@
-# telegram bot for edoctor talonchecker
+# telegram bot for edoctor talon checker
+
+![](./assets/screenshot.png)
 
 1. Go to [BotFather](https://t.me/BotFather) and create new bot, and save token
 2. Set environments
