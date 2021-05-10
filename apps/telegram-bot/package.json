@@ -14,8 +14,6 @@
     "dotenv": "^9.0.1",
     "edoctor-talon-checker": "^1.0.0",
     "express": "^4.17.1",
-    "fastify": "^3.15.1",
-    "fastify-telegraf": "^1.0.2",
     "telegraf": "^4.3.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
