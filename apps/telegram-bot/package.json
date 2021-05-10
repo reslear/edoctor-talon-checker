@@ -4,7 +4,8 @@
   "private": true,
   "main": "dist/index.js",
   "scripts": {
-    "dev": "ts-node-dev -r dotenv/config --clear --exit-child --respawn --transpile-only src/index.ts",
+    "dev": "cross-env NODE_ENV=development ts-node-dev -r dotenv/config --clear --exit-child --respawn --transpile-only src/index.ts",
+    "start": "ts-node -r dotenv/config src/index.ts",
     "deploy": "cd ../../ && git subtree push --prefix apps/telegram-bot heroku master"
   },
   "dependencies": {

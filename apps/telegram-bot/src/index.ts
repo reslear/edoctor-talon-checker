@@ -77,7 +77,7 @@ bot.command('stop', async (ctx) => {
 
 app.get('/', (req: Request, res: Response) => res.send('Hello World!'))
 
-app.use(bot.webhookCallback(WEBHOOK_URL + '/secret-path'))
+app.use(bot.webhookCallback('/secret-path'))
 
 app.listen(PORT, () => {
   console.log('Listening on port', PORT)
