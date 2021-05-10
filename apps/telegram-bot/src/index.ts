@@ -4,7 +4,7 @@ import { checkTalon } from 'edoctor-talon-checker'
 import telegrafPlugin from 'fastify-telegraf'
 
 import { CronosTask, scheduleTask } from 'cronosjs'
-const PORT = process.env.PORT || 3000
+let PORT = process.env.PORT || 5000
 const WEBHOOK_URL = process.env.WEBHOOK_URL
 const BOT_TOKEN = process.env.BOT_TOKEN
 
@@ -23,7 +23,7 @@ let schedule: CronosTask | null = null
 const task = async (ctx: Context) => {
   const { count } = await checkTalon({
     url,
-    form_data: { Check37: 'on' },
+    form_data: { Check25: 'on' },
   })
 
   if (count > 0) {
