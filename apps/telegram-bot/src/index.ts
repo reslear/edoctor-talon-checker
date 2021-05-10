@@ -1,7 +1,6 @@
-import fastify from 'fastify'
+import express, { Request, Response } from 'express'
 import { Telegraf, Markup, Context } from 'telegraf'
 import { checkTalon } from 'edoctor-talon-checker'
-import telegrafPlugin from 'fastify-telegraf'
 
 import { CronosTask, scheduleTask } from 'cronosjs'
 let PORT = process.env.PORT || 5000
@@ -12,10 +11,9 @@ if (!WEBHOOK_URL) throw new Error('"WEBHOOK_URL" env var is required!')
 if (!BOT_TOKEN) throw new Error('"BOT_TOKEN" env var is required!')
 
 const bot = new Telegraf(BOT_TOKEN)
-const app = fastify()
+bot.telegram.setWebhook(WEBHOOK_URL + '/secret-path')
 
-//refactor next release to `bot.secretPathComponent`
-app.register(telegrafPlugin, { bot, path: '/my-secret-path' })
+const app = express()
 
 const url = 'http://178.124.171.86:8081/4DACTION/TalonyWeb_TalonyList'
 let schedule: CronosTask | null = null
@@ -77,13 +75,11 @@ bot.command('stop', async (ctx) => {
   }
 })
 
-bot.telegram.setWebhook(WEBHOOK_URL).then(() => {
-  console.log('Webhook is set on', WEBHOOK_URL)
-})
+app.get('/', (req: Request, res: Response) => res.send('Hello World!'))
 
-bot.launch()
+app.use(bot.webhookCallback(WEBHOOK_URL + '/secret-path'))
 
-app.listen(PORT).then(() => {
+app.listen(PORT, () => {
   console.log('Listening on port', PORT)
 })
 

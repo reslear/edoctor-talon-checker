@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "ts-node-dev -r dotenv/config --clear --exit-child --respawn --transpile-only src/index.ts",
-    "start": "ts-node -r dotenv/config src/index.ts",
     "deploy": "cd ../../ && git subtree push --prefix apps/telegram-bot heroku master"
   },
   "dependencies": {
@@ -13,6 +12,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "^9.0.1",
     "edoctor-talon-checker": "^1.0.0",
+    "express": "^4.17.1",
     "fastify": "^3.15.1",
     "fastify-telegraf": "^1.0.2",
     "telegraf": "^4.3.0",
@@ -20,6 +20,7 @@
     "typescript": "^4.2.4"
   },
   "devDependencies": {
+    "@types/express": "^4.17.11",
     "ts-node-dev": "^1.1.6"
   },
   "engines": {
