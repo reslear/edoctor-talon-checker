@@ -34,8 +34,8 @@ setInterval(
 
 ## Example apps:
 
-- [simple native server with notifications and cron](https://github.com/reslear/edoctor-talon-checker/tree/main/apps/native)
-- telegram bot (**🏗 WIP**)
+- ✅ [simple native server with notifications and cron](https://github.com/reslear/edoctor-talon-checker/tree/main/apps/native)
+- ✅ [telegram bot](https://github.com/reslear/edoctor-talon-checker/tree/main/apps/telegram-bot)
 - electron
 - fullstack app
 

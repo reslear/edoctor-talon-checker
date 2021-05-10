@@ -8,8 +8,9 @@ Tool for check talon (a doctor's appointment card) availability,on Belarus onlin
 | ------------------------------------------------------------------------------------------------------------------ |
 | [edoctor-talon-checker](https://github.com/reslear/edoctor-talon-checker/tree/main/packages/edoctor-talon-checker) |
 | [native example](https://github.com/reslear/edoctor-talon-checker/tree/main/apps/native)                           |
-| electron example (🏗 WIP)                                                                                           |
-| fullstack app example (🏗 WIP)                                                                                      |
+| [telegram bot](https://github.com/reslear/edoctor-talon-checker/tree/main/apps/telegram-bot)                       |
+| electron example                                                                                                   |
+| fullstack app example                                                                                              |
 
 ## License
 
