@@ -58,7 +58,7 @@ bot.command('check', async (ctx) => {
 
 bot.command('run', async (ctx) => {
   if (!schedule) {
-    schedule = scheduleTask('*/10 * * * * * *', () => task(ctx), {
+    schedule = scheduleTask('*/10 * * * *', () => task(ctx), {
       timezone: 'Europe/Minsk',
     })
 
