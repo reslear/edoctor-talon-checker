@@ -35,7 +35,7 @@ const task = async (ctx: Context) => {
       keyboard
     )
   } else {
-    ctx.reply('Талонов нет', { disable_notification: true })
+    //ctx.reply('Талонов нет', { disable_notification: true })
   }
 }
 
