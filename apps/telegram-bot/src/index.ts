@@ -18,7 +18,7 @@ const app = express()
 const url = 'http://178.124.171.86:8081/4DACTION/TalonyWeb_TalonyList'
 let schedule: CronosTask | null = null
 
-const task = async (ctx: Context) => {
+const task = async (ctx: Context, { show_no_talon = false } = {}) => {
   const { count } = await checkTalon({
     url,
     form_data: { Check25: 'on' },
@@ -35,7 +35,9 @@ const task = async (ctx: Context) => {
       keyboard
     )
   } else {
-    //ctx.reply('Талонов нет', { disable_notification: true })
+    if (show_no_talon) {
+      ctx.reply('Талонов нет', { disable_notification: true })
+    }
   }
 }
 
@@ -53,7 +55,7 @@ bot.start(async (ctx) => {
 })
 
 bot.command('check', async (ctx) => {
-  task(ctx)
+  task(ctx, { show_no_talon: true })
 })
 
 bot.command('run', async (ctx) => {
