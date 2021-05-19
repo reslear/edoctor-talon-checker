@@ -25,3 +25,9 @@
 3. For pinging your Heroku app, will never go to sleep, use:
    - http://kaffeine.herokuapp.com
    - http://wakemydyno.com
+
+Heroku push
+
+```
+git subtree push --prefix apps/telegram-bot heroku master
+```

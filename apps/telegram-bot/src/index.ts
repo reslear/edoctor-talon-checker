@@ -28,11 +28,9 @@ interface MyContext extends Context {
 const bot = new Telegraf<MyContext>(BOT_TOKEN)
 bot.telegram.setWebhook(WEBHOOK_URL + '/secret-path')
 
-bot.use(
-  new LocalSession({
-    database: 'db.json',
-  }).middleware()
-)
+const localSession = new LocalSession({})
+
+bot.use(localSession.middleware())
 
 const app = express()
 
@@ -40,9 +38,23 @@ const url = 'http://178.124.171.86:8081/4DACTION/TalonyWeb_TalonyList'
 let schedule: CronosTask | null = null
 
 const task = async (ctx: MyContext, { show_no_talon = false } = {}) => {
+  console.log('task')
+
+  console.log(ctx.session.log)
+
+  ctx.session.log = ctx.session.log || {}
+
   const { count } = await checkTalon({
     url,
     form_data: { Check25: 'on' },
+  })
+
+  const dateKey = dayjs().format('DD.MM.YY')
+  if (!ctx.session.log[dateKey]) ctx.session.log[dateKey] = []
+
+  ctx.session.log[dateKey].push({
+    time: dayjs().format('HH:mm'),
+    count,
   })
 
   if (count > 0) {
@@ -72,37 +84,32 @@ bot.start(async (ctx) => {
       Markup.button.text('/stop'),
       Markup.button.text('/check'),
       Markup.button.text('/stats'),
-      Markup.button.text('/delete'),
+      Markup.button.text('/remove'),
     ]).resize()
   )
 })
 
 bot.command('check', async (ctx, next) => {
-  ctx.session.log = ctx.session.log || {}
-
-  const { count } = await task(ctx, { show_no_talon: true })
-
-  const dateKey = dayjs().format('DD.MM.YY')
-  if (!ctx.session.log[dateKey]) ctx.session.log[dateKey] = []
-
-  ctx.session.log[dateKey].push({
-    time: dayjs().format('HH:mm'),
-    count,
-  })
+  await task(ctx, { show_no_talon: true })
 })
 
 bot.command('run', async (ctx) => {
   if (!schedule) {
-    schedule = scheduleTask('*/10 * * * *', () => task(ctx), {
-      timezone: 'Europe/Minsk',
-    })
-
-    schedule.start()
+    schedule = scheduleTask(
+      '*/10 * * * *',
+      () => {
+        task(ctx)
+      },
+      {
+        timezone: 'Europe/Minsk',
+      }
+    )
 
     ctx.replyWithMarkdown(`✅ Schedule for checking talons success running`)
+    schedule.start()
   }
 
-  task(ctx)
+  await task(ctx)
 })
 
 bot.command('stop', async (ctx) => {
