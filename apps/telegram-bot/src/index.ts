@@ -14,11 +14,6 @@ dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.tz.setDefault('Europe/Minsk')
 
-console.log(dayjs.tz.guess())
-
-console.log(dayjs().format('HH:mm'))
-console.log(dayjs().tz().format('HH:mm'))
-
 let PORT = process.env.PORT || 5000
 const WEBHOOK_URL = process.env.WEBHOOK_URL
 const BOT_TOKEN = process.env.BOT_TOKEN
@@ -61,11 +56,11 @@ const task = async (ctx: MyContext, { show_no_talon = false } = {}) => {
     form_data: { Check25: 'on' },
   })
 
-  const dateKey = dayjs().format('DD.MM.YY')
+  const dateKey = dayjs().tz().format('DD.MM.YY')
   if (!ctx.session.log[dateKey]) ctx.session.log[dateKey] = []
 
   ctx.session.log[dateKey].push({
-    time: dayjs().format('HH:mm'),
+    time: dayjs().tz().format('HH:mm'),
     count,
   })
 
