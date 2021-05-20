@@ -94,20 +94,18 @@ bot.command('check', async (ctx, next) => {
 })
 
 bot.command('run', async (ctx) => {
-  if (!schedule) {
-    schedule = scheduleTask(
-      '*/10 * * * *',
-      () => {
-        task(ctx)
-      },
-      {
-        timezone: 'Europe/Minsk',
-      }
-    )
+  schedule = scheduleTask(
+    '*/10 * * * *',
+    () => {
+      task(ctx)
+    },
+    {
+      timezone: 'Europe/Minsk',
+    }
+  )
 
-    ctx.replyWithMarkdown(`✅ Schedule for checking talons success running`)
-    schedule.start()
-  }
+  ctx.replyWithMarkdown(`✅ Schedule for checking talons success running`)
+  schedule.start()
 
   await task(ctx)
 })
