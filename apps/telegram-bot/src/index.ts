@@ -8,8 +8,16 @@ import { CronosTask, scheduleTask } from 'cronosjs'
 import dayjs from 'dayjs'
 
 import timezone from 'dayjs/plugin/timezone'
+import utc from 'dayjs/plugin/utc'
+
+dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.tz.setDefault('Europe/Minsk')
+
+console.log(dayjs.tz.guess())
+
+console.log(dayjs().format('HH:mm'))
+console.log(dayjs().tz().format('HH:mm'))
 
 let PORT = process.env.PORT || 5000
 const WEBHOOK_URL = process.env.WEBHOOK_URL
@@ -124,20 +132,21 @@ bot.command('stop', async (ctx) => {
 })
 
 bot.command('stats', (ctx) => {
-  let output = ``
+  let output = []
 
-  Object.keys(ctx.session.log).forEach((dateKey) => {
-    output += `*${dateKey}*\n`
+  for (const [key, value] of Object.entries(ctx.session.log)) {
+    output.push(`*${key}*`)
 
     const times = []
-    ctx.session.log[dateKey].map((arr) => {
+
+    value.forEach((arr) => {
       times.push(`${arr.time} - *${arr.count}*`)
     })
 
-    output += times.join(', ')
-  })
+    output.push(times.join(', '))
+  }
 
-  ctx.replyWithMarkdown(output)
+  ctx.replyWithMarkdown(output.join('\n'))
 })
 
 bot.command('/remove', (ctx) => {
