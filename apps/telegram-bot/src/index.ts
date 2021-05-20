@@ -7,6 +7,10 @@ import { checkTalon } from 'edoctor-talon-checker'
 import { CronosTask, scheduleTask } from 'cronosjs'
 import dayjs from 'dayjs'
 
+import timezone from 'dayjs/plugin/timezone'
+dayjs.extend(timezone)
+dayjs.tz.setDefault('Europe/Minsk')
+
 let PORT = process.env.PORT || 5000
 const WEBHOOK_URL = process.env.WEBHOOK_URL
 const BOT_TOKEN = process.env.BOT_TOKEN
