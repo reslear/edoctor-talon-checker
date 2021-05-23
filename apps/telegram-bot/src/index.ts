@@ -155,6 +155,10 @@ app.use(bot.webhookCallback('/secret-path'))
 
 app.use(express.static('public'))
 
+app.use('/v1', (req, res) => {
+  res.send({ ok: 1 })
+})
+
 app.listen(PORT, () => {
   console.log('Listening on port', PORT)
 })
