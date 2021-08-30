@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express'
+import express, { Request, RequestHandler, Response } from 'express'
 import { Telegraf, Markup, Context } from 'telegraf'
 
 import LocalSession from 'telegraf-session-local'
@@ -151,7 +151,7 @@ bot.command('/remove', (ctx) => {
   ctx.session = null
 })
 
-app.use(bot.webhookCallback('/secret-path'))
+app.use(bot.webhookCallback('/secret-path') as RequestHandler)
 
 app.use(express.static('public'))
 
