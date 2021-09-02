@@ -134,7 +134,15 @@ const getLastObject = <T>(obj: T) => {
 bot.command('stats', (ctx) => {
   let output = []
 
-  const lastObj = getLastObject(ctx.session.log)
+  const obj = ctx?.session?.log || {}
+
+  if (!Object.keys(obj).length) {
+    ctx.replyWithMarkdown('stats is empty')
+    return
+  }
+
+  const lastObj = getLastObject(obj)
+
 
   for (const [key, value] of Object.entries(lastObj)) {
     output.push(`*${key}*`)
