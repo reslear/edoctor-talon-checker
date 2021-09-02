@@ -45,9 +45,6 @@ const url = 'http://178.124.171.86:8081/4DACTION/TalonyWeb_TalonyList'
 let schedule: CronosTask | null = null
 
 const task = async (ctx: MyContext, { show_no_talon = false } = {}) => {
-  console.log('task')
-
-  console.log(ctx.session.log)
 
   ctx.session.log = ctx.session.log || {}
 
