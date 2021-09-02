@@ -126,10 +126,20 @@ bot.command('stop', async (ctx) => {
   }
 })
 
+const getLastObject = <T>(obj: T) => {
+
+  const lastKey = Object.keys(obj).pop()
+  const lastItem = obj[lastKey]
+
+  return {[lastKey]: lastItem}
+}
+
 bot.command('stats', (ctx) => {
   let output = []
 
-  for (const [key, value] of Object.entries(ctx.session.log)) {
+  const lastObj = getLastObject(ctx.session.log)
+
+  for (const [key, value] of Object.entries(lastObj)) {
     output.push(`*${key}*`)
 
     const times = []
