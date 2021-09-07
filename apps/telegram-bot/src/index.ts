@@ -86,15 +86,11 @@ bot.start(async (ctx) => {
     Markup.keyboard([
       Markup.button.text('/run'),
       Markup.button.text('/stop'),
-      Markup.button.text('/check'),
+      Markup.button.text('/once'),
       Markup.button.text('/stats'),
       Markup.button.text('/remove'),
     ]).resize()
   )
-})
-
-bot.command('check', async (ctx, next) => {
-  await task(ctx, { show_no_talon: true })
 })
 
 bot.command('run', async (ctx) => {
@@ -124,7 +120,7 @@ bot.command('stop', async (ctx) => {
 })
 
 bot.command('once', async (ctx) => {
-  task(ctx)
+  await task(ctx, { show_no_talon: true })
 })
 
 const getLastObject = <T>(obj: T) => {
