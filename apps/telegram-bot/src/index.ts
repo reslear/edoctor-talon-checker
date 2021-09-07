@@ -123,6 +123,10 @@ bot.command('stop', async (ctx) => {
   }
 })
 
+bot.command('once', async (ctx) => {
+  task(ctx)
+})
+
 const getLastObject = <T>(obj: T) => {
 
   const lastKey = Object.keys(obj).pop()
