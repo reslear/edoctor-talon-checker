@@ -44,6 +44,8 @@ const app = express()
 const url = 'http://178.124.171.86:8081/4DACTION/TalonyWeb_TalonyList'
 let schedule: CronosTask | null = null
 
+let minutes = 5 
+
 const task = async (ctx: MyContext, { show_no_talon = false } = {}) => {
 
   ctx.session.log = ctx.session.log || {}
@@ -93,9 +95,9 @@ bot.start(async (ctx) => {
   )
 })
 
-bot.command('run', async (ctx) => {
+const runMw = async (ctx) => {
   schedule = scheduleTask(
-    '*/10 * * * *',
+    `*/${minutes} * * * *`,
     () => {
       task(ctx)
     },
@@ -104,11 +106,30 @@ bot.command('run', async (ctx) => {
     }
   )
 
-  ctx.replyWithMarkdown(`✅ Schedule for checking talons success running`)
+
+
+  ctx.replyWithMarkdown(`✅ Schedule for checking talons success running every ${minutes} minutes`)
   schedule.start()
 
   await task(ctx)
-})
+}
+
+bot.command('run', runMw)
+
+bot.hears(/set (.+)/, (ctx, next) => {
+
+  const m = parseInt(ctx.match?.[1]) || 5
+
+  if (m < 1 || m > 60) {
+    ctx.reply('error set, only 1 – 60')
+    return
+  }
+
+  minutes = m
+
+  ctx.reply(`success set ${m} minutes`)
+  next()
+}, runMw)
 
 bot.command('stop', async (ctx) => {
   if (schedule && schedule.isRunning) {
