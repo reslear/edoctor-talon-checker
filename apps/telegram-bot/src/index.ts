@@ -96,6 +96,12 @@ bot.start(async (ctx) => {
 })
 
 const runMw = async (ctx) => {
+
+  if (schedule) {
+    schedule.stop()
+    schedule = null
+  }
+
   schedule = scheduleTask(
     `*/${minutes} * * * *`,
     () => {
