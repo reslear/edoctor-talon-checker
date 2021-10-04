@@ -101,27 +101,33 @@ bot.start(async (ctx) => {
 
 const runMw = async (ctx) => {
 
-  if (schedule) {
-    schedule.stop()
-    schedule = null
-  }
+  try {
 
-  schedule = scheduleTask(
-    `*/${minutes} * * * *`,
-    () => {
-      task(ctx)
-    },
-    {
-      timezone: 'Europe/Minsk',
+    if (schedule) {
+      schedule.stop()
+      schedule = null
     }
-  )
+
+    schedule = scheduleTask(
+      `*/${minutes} * * * *`,
+      () => {
+        task(ctx)
+      },
+      {
+        timezone: 'Europe/Minsk',
+      }
+    )
 
 
 
-  ctx.replyWithMarkdown(`✅ Schedule for checking talons success running every ${minutes} minutes`)
-  schedule.start()
+    ctx.replyWithMarkdown(`✅ Schedule for checking talons success running every ${minutes} minutes`)
+    schedule.start()
 
-  await task(ctx)
+    await task(ctx)
+  } catch (e: any) {
+    console.error(e)
+  }
+  return
 }
 
 bot.command('run', runMw)
