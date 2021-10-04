@@ -36,7 +36,7 @@ const bot = new Telegraf<MyContext>(BOT_TOKEN)
 bot.telegram.setWebhook(WEBHOOK_URL + '/secret-path')
 
 const localSession = new LocalSession({
-  database: '../public/sessions.json',
+  database: 'public/sessions.json',
 })
 
 bot.use(localSession.middleware())
