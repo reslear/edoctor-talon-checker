@@ -35,9 +35,12 @@ interface MyContext extends Context {
 const bot = new Telegraf<MyContext>(BOT_TOKEN)
 bot.telegram.setWebhook(WEBHOOK_URL + '/secret-path')
 
-const localSession = new LocalSession({})
+const localSession = new LocalSession({
+  database: '/public/sessions.json',
+})
 
 bot.use(localSession.middleware())
+
 
 const app = express()
 
@@ -83,6 +86,7 @@ const task = async (ctx: MyContext, { show_no_talon = false } = {}) => {
 }
 
 bot.start(async (ctx) => {
+  // https://github.com/telegraf/telegraf/issues/204#issuecomment-340902071
   ctx.replyWithMarkdown(
     `Привет, начнем?`,
     Markup.keyboard([
